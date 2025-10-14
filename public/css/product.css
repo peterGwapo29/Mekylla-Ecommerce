@@ -1,0 +1,167 @@
+#openModalBtn {
+    background-color: #059669;    
+    color: #ffffff;
+    padding: 0.6rem 1.2rem;         
+    border: none;
+    border-radius: 8px;             
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#openModalBtn:hover {
+    background-color: #047857;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+#openModalBtn:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+#openModalBtn:focus {
+    outline: 3px solid #10b981;
+    outline-offset: 2px;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  overflow-y: auto; /* Allow scrolling if needed */
+  padding: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal-box {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  max-width: 450px;
+  width: 100%;
+  max-height: 90vh;  /* 🔥 Limit modal height */
+  overflow-y: auto; /* 🔥 Scroll inside modal if content is too long */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  animation: modalFadeIn 0.3s ease;
+}
+
+.modal-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #333;
+  position: sticky;
+  top: 0;
+  background: white;
+  padding-bottom: 10px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #444;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 0.95rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #00a86b;
+  box-shadow: 0 0 0 3px rgba(0, 168, 107, 0.15);
+}
+
+/* 🖼️ Image preview container */
+.preview-container {
+  margin-top: 10px;
+  max-height: 250px; /* 🔥 Limit image preview height */
+  overflow-y: auto;  /* 🔥 Make preview scrollable if image is large */
+  display: flex;
+  justify-content: center;
+}
+
+.preview-container img {
+  max-width: auto;
+  height: 400px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* Buttons */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+  position: sticky; /* 🔥 Keep buttons visible */
+  bottom: 0;
+  background: white;
+  padding-top: 10px;
+}
+
+.btn {
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.cancel-btn {
+  background: #ddd;
+  color: #333;
+}
+
+.cancel-btn:hover {
+  background: #c5c5c5;
+}
+
+.add-btn {
+  background: #00a86b;
+  color: #fff;
+}
+
+.add-btn:hover {
+  background: #008a58;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
