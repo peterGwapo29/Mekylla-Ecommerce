@@ -14,8 +14,6 @@ document.addEventListener("click", function (e) {
         confirmButtonText: "Yes, delete it!"
         }).then((result) => {
         if (result.isConfirmed) {
-            // 🧹 Perform your delete action here (AJAX, Fetch, etc.)
-            // Example:
             fetch(`/products/${id}`, {
                 method: "DELETE",
                 headers: {

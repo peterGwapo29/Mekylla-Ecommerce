@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
     public function index(){
-        return view('Product.product');
+        $categories = Category::all();  // ✅ Fetch categories
+        return view('Product.product', compact('categories'));
     }
 
     public function user_index(){
@@ -18,7 +20,7 @@ class ProductController extends Controller
     }
 
     public function product_datatables(){
-        $products = Product::select(['id', 'name', 'price', 'category', 'image', 'status'])
+        $products = Product::select(['id', 'name', 'price', 'category', 'stock', 'image', 'status'])
         ->where('status', 'active');;
 
         return DataTables::of($products)->make(true);
@@ -49,6 +51,44 @@ class ProductController extends Controller
         return response()->json([
             'message' => '✅ Product added successfully!',
             'product' => $product,
+        ]);
+    }
+
+    public function update(Request $request, $id){
+        $product = Product::find($id);
+
+        if (!$product) {
+            return response()->json([
+                'message' => '❌ Product not found.'
+            ], 404);
+        }
+
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric',
+            'category' => 'required|string|max:255',
+            'stock' => 'nullable|integer',
+            'status' => 'nullable|string|in:active,inactive',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:5120',
+        ]);
+
+        $validated['stock'] = $validated['stock'] ?? 0;
+        $validated['status'] = $validated['status'] ?? $product->status;
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $path = $file->store('products', 'public');
+            $validated['image'] = $path;
+        } else {
+            $validated['image'] = $product->image;
+        }
+
+        $product->update($validated);
+
+        return response()->json([
+            'message' => '✅ Product updated successfully!',
+            'product' => $product
         ]);
     }
 

@@ -8,7 +8,7 @@
     position: fixed;
     left: 0;
     top: 0;
-    background-color: #4f46e5;
+    background-color: #2563eb;
 }
 .logo-image{
     height: 60px;
@@ -42,7 +42,7 @@
     display: flex;
     align-items: center;
     padding: 12px 20px;
-    color: #fff;
+    color: #ffffff;
     text-decoration: none;
     font-size: 15px;
     transition: background 0.2s ease;
@@ -50,10 +50,12 @@
 
 .sidebar-menu a:hover {
     background-color: #ec4899;
+    color: #ffffff;
 }
 
 .sidebar-menu a.active {
     background-color: #ec4899;
+    color: #ffffff;
 }
 
 /* SVG icons */
@@ -133,6 +135,7 @@
 .sidebar-user {
     padding: 1rem;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: #ec4899;
 }
 .sidebar-user a {
     display: flex;

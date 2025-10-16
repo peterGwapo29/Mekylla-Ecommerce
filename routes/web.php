@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GoogleAuthController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
@@ -46,6 +47,10 @@ Route::middleware('auth')->group(function () {
     // Product
     Route::get('/product', [ProductController::class, 'index'])->name('product');
     Route::post('/products', [ProductController::class, 'store']);
+    Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
+
+    //Dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
     Route::get('/product/list', [ProductController::class, 'product_datatables'])->name('product.datatables');
 

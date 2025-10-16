@@ -12,6 +12,7 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="{{ asset('css/product.css') }}">
         <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 
         <link rel="stylesheet" href="https://cdn.datatables.net/2.1.3/css/dataTables.dataTables.min.css">
 
@@ -44,5 +45,6 @@
         <script src="{{ asset('JS/Admin/Product/product.js') }}"></script>
         <script src="{{ asset('JS/Admin/Product/delete.js') }}"></script>
         <script src="{{ asset('JS/Admin/Product/view.js') }}"></script>
+        <script src="{{ asset('JS/Admin/Product/edit.js') }}"></script>
     </body>
 </html>

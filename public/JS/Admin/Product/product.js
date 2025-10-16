@@ -53,10 +53,6 @@ class ProductModal {
         this.resetForm();
     }
 
-    showSuccessModal() {
-        this.successModal?.classList.remove("hidden");
-    }
-
     hideSuccessModal() {
         this.successModal?.classList.add("hidden");
     }
@@ -107,22 +103,34 @@ class ProductModal {
 
             if (!response.ok) {
                 console.error("❌ Error:", result);
-                alert("Failed to add product: " + (result.message || "Unknown error"));
                 return;
             }
-
             console.log("✅ Product Saved:", result);
+
+             Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Product added successfully",
+                showConfirmButton: false,
+                timer: 1000,
+                timerProgressBar: true,
+                allowOutsideClick: false,
+            }).then((_) => {
+                location.reload();
+            });
+
             this.hideModal();
-            this.showSuccessModal();
             this.resetForm();
             this.addProductToGrid(result.product);
 
         } catch (error) {
             console.error("⚠️ Request failed:", error);
-            alert("An error occurred while saving the product.");
+            Swal.fire({
+                icon: "error",
+                title: "Failed to add product",
+                text: result.message || "Unknown error occurred",
+            });
         }
-        location.reload();
-
     }
 
     addProductToGrid(product) {

@@ -1,6 +1,5 @@
 :root {
-  --primary-color: #4f46e5;
-  --secondary-color: #ec4899;
+  --primary-color: #2563eb;
   --accent-color: #10b981;
 }
 
@@ -30,7 +29,7 @@
 }
 
 #openModalBtn:focus {
-  outline: 3px solid var(--accent-color);
+  outline: 3px solid var(--primary-color);
   outline-offset: 2px;
 }
 
@@ -140,12 +139,12 @@
 }
 
 .add-btn {
-  background: var(--accent-color);
+  background: var(--primary-color);
   color: #fff;
 }
 
 .add-btn:hover {
-  background: #008a58;
+  opacity: .9;
 }
 
 /* === DataTables Table === */
