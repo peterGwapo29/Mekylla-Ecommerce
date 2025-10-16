@@ -10,7 +10,6 @@
     <div class="py-12 bg-gray-50 min-h-screen">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                
                 <!-- Add Product Button -->
                 <div class="flex justify-end mb-4">
                     <button id="openModalBtn" class="px-4 py-2 text-white rounded-md" style="background-color: var(--primary-color);">
@@ -20,16 +19,7 @@
 
                 <!-- Product Table -->
                 <div class="overflow-x-auto">
-                    <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-100">
-                            <tr>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase">Image</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase">Product Name</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase">Price</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase">Old Price</th>
-                                <th class="px-6 py-3 text-center text-xs font-medium text-gray-600 uppercase">Actions</th>
-                            </tr>
-                        </thead>
+                    <table class="min-w-full divide-y divide-gray-200" id="productTable">
                         <tbody id="product-table-body" class="divide-y divide-gray-200 text-sm text-gray-700">
                             <!-- Dynamic rows will appear here -->
                         </tbody>
@@ -63,8 +53,18 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="productOldPrice">Old Price</label>
-                    <input type="number" step="0.01" id="productOldPrice" required>
+                    <label for="productCategory">Category</label>
+                    <select id="productCategory" required>
+                        <option hidden>Select Category</option>
+                        <option value="Backpacks">Backpacks</option>
+                        <option value="Handbags">Handbags</option>
+                        <option value="Travel Bags">Travel Bags</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="productStock">Stock</label>
+                    <input type="number" step="0.01" id="productStock" required>
                 </div>
 
                 <div class="modal-actions">

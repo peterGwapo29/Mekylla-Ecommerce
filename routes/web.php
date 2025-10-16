@@ -47,8 +47,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/product', [ProductController::class, 'index'])->name('product');
     Route::post('/products', [ProductController::class, 'store']);
 });
+    Route::get('/product/list', [ProductController::class, 'product_datatables'])->name('product.datatables');
 
-Route::get('/products/user', [ProductController::class, 'user_index']);
+    Route::get('/products/user', [ProductController::class, 'user_index']);
+    Route::delete('/products/{id}', [ProductController::class, 'destroy']);
+
 
 
 require __DIR__.'/auth.php';

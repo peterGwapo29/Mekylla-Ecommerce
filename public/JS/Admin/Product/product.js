@@ -85,7 +85,8 @@ class ProductModal {
         const formData = new FormData();
         formData.append("name", document.getElementById("productName").value);
         formData.append("price", document.getElementById("productPrice").value);
-        formData.append("old_price", document.getElementById("productOldPrice").value);
+        formData.append("stock", document.getElementById("productStock").value);
+        formData.append("category", document.getElementById("productCategory").value);
 
         const imageFile = document.getElementById("productImage").files[0];
         if (imageFile) formData.append("image", imageFile);
@@ -120,6 +121,8 @@ class ProductModal {
             console.error("⚠️ Request failed:", error);
             alert("An error occurred while saving the product.");
         }
+        location.reload();
+
     }
 
     addProductToGrid(product) {
@@ -135,7 +138,7 @@ class ProductModal {
             <img src="${imgSrc}" alt="${product.name}" class="w-full h-48 object-cover rounded-md mb-2">
             <h3 class="text-lg font-semibold">${product.name}</h3>
             <p class="text-gray-700">₱${product.price}</p>
-            ${product.old_price ? `<p class="line-through text-gray-400">₱${product.old_price}</p>` : ""}
+            ${product.stock ? `<p class="line-through text-gray-400">₱${product.stock}</p>` : ""}
         `;
 
         container.prepend(card);

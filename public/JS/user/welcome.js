@@ -17,7 +17,7 @@ async function loadProducts() {
                 <p class="font-medium">${product.name}</p>
                 <p class="text-pink-500 font-semibold">
                     $${Number(product.price).toFixed(2)}
-                    ${product.old_price ? `<span class="text-gray-400 line-through text-sm">$${Number(product.old_price).toFixed(2)}</span>` : ""}
+                    ${product.stock ? `<br><span class="text-gray-400 line-through text-sm">Stock: ${Number(product.stock)}</span>` : ""}
                 </p>
                 <button class="mt-3 w-full bg-pink-500 text-white font-semibold py-2 rounded-full hover:bg-pink-600 transition duration-300 ease-in-out shadow-md hover:shadow-lg active:scale-95">Add to Cart</button>
             </div>
