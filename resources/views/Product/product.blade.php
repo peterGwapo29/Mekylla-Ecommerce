@@ -13,14 +13,27 @@
                 
                 <!-- Add Product Button -->
                 <div class="flex justify-end mb-4">
-                    <button id="openModalBtn">
+                    <button id="openModalBtn" class="px-4 py-2 text-white rounded-md" style="background-color: var(--primary-color);">
                         + Add Product
                     </button>
                 </div>
 
-                <!-- Product Grid -->
-                <div id="product-container" 
-                     class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Product Table -->
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase">Image</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase">Product Name</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase">Price</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase">Old Price</th>
+                                <th class="px-6 py-3 text-center text-xs font-medium text-gray-600 uppercase">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="product-table-body" class="divide-y divide-gray-200 text-sm text-gray-700">
+                            <!-- Dynamic rows will appear here -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -62,6 +75,7 @@
         </div>
     </div>
 
+    <!-- Success Modal -->
     <div id="successModal" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
         <div class="bg-white p-6 rounded shadow text-center">
             <h2 class="text-xl font-bold mb-2">✅ Success!</h2>
@@ -69,6 +83,4 @@
             <button id="closeSuccessBtn" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">OK</button>
         </div>
     </div>
-
-    
 </x-app-layout>

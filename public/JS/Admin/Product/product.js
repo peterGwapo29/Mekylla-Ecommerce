@@ -21,38 +21,44 @@ class ProductModal {
     }
 
     initEvents() {
-        // Show/Hide modals
-        this.openBtn.addEventListener("click", () => this.showModal());
-        this.closeBtn.addEventListener("click", () => this.hideModal());
-        this.closeSuccessBtn.addEventListener("click", () => this.hideSuccessModal());
+        // ✅ Only attach events if the elements exist
+        if (this.openBtn)
+            this.openBtn.addEventListener("click", () => this.showModal());
 
+        if (this.closeBtn)
+            this.closeBtn.addEventListener("click", () => this.hideModal());
+
+        if (this.closeSuccessBtn)
+            this.closeSuccessBtn.addEventListener("click", () => this.hideSuccessModal());
+
+        if (this.imageInput)
+            this.imageInput.addEventListener("change", (e) => this.previewImage(e));
+
+        if (this.form)
+            this.form.addEventListener("submit", (e) => this.handleSubmit(e));
+
+        // ✅ Safe window listener
         window.addEventListener("click", (e) => {
             if (e.target === this.modal) this.hideModal();
             if (e.target === this.successModal) this.hideSuccessModal();
         });
-
-        // Image preview
-        this.imageInput.addEventListener("change", (e) => this.previewImage(e));
-
-        // Handle form submit
-        this.form.addEventListener("submit", (e) => this.handleSubmit(e));
     }
 
     showModal() {
-        this.modal.classList.remove("hidden");
+        this.modal?.classList.remove("hidden");
     }
 
     hideModal() {
-        this.modal.classList.add("hidden");
+        this.modal?.classList.add("hidden");
         this.resetForm();
     }
 
     showSuccessModal() {
-        this.successModal.classList.remove("hidden");
+        this.successModal?.classList.remove("hidden");
     }
 
     hideSuccessModal() {
-        this.successModal.classList.add("hidden");
+        this.successModal?.classList.add("hidden");
     }
 
     previewImage(e) {
@@ -76,18 +82,14 @@ class ProductModal {
     async handleSubmit(e) {
         e.preventDefault();
 
-        // Prepare the form data
         const formData = new FormData();
         formData.append("name", document.getElementById("productName").value);
         formData.append("price", document.getElementById("productPrice").value);
         formData.append("old_price", document.getElementById("productOldPrice").value);
 
         const imageFile = document.getElementById("productImage").files[0];
-        if (imageFile) {
-            formData.append("image", imageFile);
-        }
+        if (imageFile) formData.append("image", imageFile);
 
-        // Get CSRF token from meta tag
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
 
         try {
@@ -95,9 +97,9 @@ class ProductModal {
                 method: "POST",
                 headers: {
                     "X-CSRF-TOKEN": csrfToken,
-                    "Accept": "application/json"  
+                    "Accept": "application/json",
                 },
-                body: formData
+                body: formData,
             });
 
             const result = await response.json();
@@ -109,15 +111,9 @@ class ProductModal {
             }
 
             console.log("✅ Product Saved:", result);
-
-            // Show success modal
             this.hideModal();
             this.showSuccessModal();
-
-            // Reset form
             this.resetForm();
-
-            // Optional: Add product to page dynamically
             this.addProductToGrid(result.product);
 
         } catch (error) {
@@ -128,6 +124,7 @@ class ProductModal {
 
     addProductToGrid(product) {
         const container = document.getElementById("product-container");
+        if (!container) return;
 
         const card = document.createElement("div");
         card.classList.add("bg-white", "rounded-lg", "shadow", "p-4", "text-center");
@@ -144,16 +141,15 @@ class ProductModal {
         container.prepend(card);
     }
 
-
-
-
     resetForm() {
+        if (!this.form) return;
         this.form.reset();
         this.imagePreview.src = "";
         this.imagePreviewContainer.classList.add("hidden");
     }
 }
 
+// ✅ Safe initialization after DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
-    const modal = new ProductModal();
+    new ProductModal();
 });
